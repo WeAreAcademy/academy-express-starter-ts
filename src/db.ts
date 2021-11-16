@@ -17,9 +17,7 @@ let idCounter = 0;
  * @param n - the number of items to generate
  * @returns the created items
  */
-export const addDummyDbItems = (
-  n: number
-): DbItemWithId[] => {
+export const addDummyDbItems = (n: number): DbItemWithId[] => {
   const createdSignatures: DbItemWithId[] = [];
   for (let count = 0; count < n; count++) {
     const createdSignature = addDbItem({
@@ -36,9 +34,7 @@ export const addDummyDbItems = (
  * @param data - the item data to insert in
  * @returns the item added (with a newly created id)
  */
-export const addDbItem = (
-  data: DbItem
-): DbItemWithId => {
+export const addDbItem = (data: DbItem): DbItemWithId => {
   const newEntry: DbItemWithId = {
     id: ++idCounter,
     ...data,
@@ -54,9 +50,7 @@ export const addDbItem = (
  * @returns the deleted database item (if originally located),
  *  otherwise the string `"not found"`
  */
-export const deleteDbItemById = (
-  id: number
-): DbItemWithId | "not found" => {
+export const deleteDbItemById = (id: number): DbItemWithId | "not found" => {
   const idxToDeleteAt = findIndexOfDbItemById(id);
   if (typeof idxToDeleteAt === "number") {
     const itemToDelete = getDbItemById(id);
@@ -74,9 +68,7 @@ export const deleteDbItemById = (
  * @returns the index of the matching database item,
  *  otherwise the string `"not found"`
  */
-const findIndexOfDbItemById = (
-  id: number
-): number | "not found" => {
+const findIndexOfDbItemById = (id: number): number | "not found" => {
   const matchingIdx = db.findIndex((entry) => entry.id === id);
   // .findIndex returns -1 if not located
   if (matchingIdx) {
@@ -101,9 +93,7 @@ export const getAllDbItems = (): DbItemWithId[] => {
  * @returns the located database item (if found),
  *  otherwise the string `"not found"`
  */
-export const getDbItemById = (
-  id: number
-): DbItemWithId | "not found" => {
+export const getDbItemById = (id: number): DbItemWithId | "not found" => {
   const maybeEntry = db.find((entry) => entry.id === id);
   if (maybeEntry) {
     return maybeEntry;

@@ -66,20 +66,14 @@ app.delete<{ id: string }>("/items/:id", (req, res) => {
 });
 
 // PATCH /items/:id
-app.patch<{ id: string }, {}, Partial<DbItem>>(
-  "/items/:id",
-  (req, res) => {
-    const matchingSignature = updateDbItemById(
-      parseInt(req.params.id),
-      req.body
-    );
-    if (matchingSignature === "not found") {
-      res.status(404).json(matchingSignature);
-    } else {
-      res.status(200).json(matchingSignature);
-    }
+app.patch<{ id: string }, {}, Partial<DbItem>>("/items/:id", (req, res) => {
+  const matchingSignature = updateDbItemById(parseInt(req.params.id), req.body);
+  if (matchingSignature === "not found") {
+    res.status(404).json(matchingSignature);
+  } else {
+    res.status(200).json(matchingSignature);
   }
-);
+});
 
 app.listen(PORT_NUMBER, () => {
   console.log(`Server is listening on port ${PORT_NUMBER}!`);
