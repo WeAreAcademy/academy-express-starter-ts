@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "scripts": {
     "build": "tsc",
-    "format": "prettier --write src",
-    "format:check": "prettier --check src",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "lint": "eslint src",
     "typecheck": "tsc --noEmit",
     "start": "node dist/server.js",
