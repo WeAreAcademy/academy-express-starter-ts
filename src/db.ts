@@ -1,9 +1,9 @@
 export interface DbItem {
-  // sketch out interface here
+    // sketch out interface here
 }
 
 export interface DbItemWithId extends DbItem {
-  id: number;
+    id: number;
 }
 
 const db: DbItemWithId[] = [];
@@ -18,14 +18,14 @@ let idCounter = 0;
  * @returns the created items
  */
 export const addDummyDbItems = (n: number): DbItemWithId[] => {
-  const createdSignatures: DbItemWithId[] = [];
-  for (let count = 0; count < n; count++) {
-    const createdSignature = addDbItem({
-      // possibly add some generated data here
-    });
-    createdSignatures.push(createdSignature);
-  }
-  return createdSignatures;
+    const createdSignatures: DbItemWithId[] = [];
+    for (let count = 0; count < n; count++) {
+        const createdSignature = addDbItem({
+            // possibly add some generated data here
+        });
+        createdSignatures.push(createdSignature);
+    }
+    return createdSignatures;
 };
 
 /**
@@ -35,12 +35,12 @@ export const addDummyDbItems = (n: number): DbItemWithId[] => {
  * @returns the item added (with a newly created id)
  */
 export const addDbItem = (data: DbItem): DbItemWithId => {
-  const newEntry: DbItemWithId = {
-    id: ++idCounter,
-    ...data,
-  };
-  db.push(newEntry);
-  return newEntry;
+    const newEntry: DbItemWithId = {
+        id: ++idCounter,
+        ...data,
+    };
+    db.push(newEntry);
+    return newEntry;
 };
 
 /**
@@ -51,14 +51,14 @@ export const addDbItem = (data: DbItem): DbItemWithId => {
  *  otherwise the string `"not found"`
  */
 export const deleteDbItemById = (id: number): DbItemWithId | "not found" => {
-  const idxToDeleteAt = findIndexOfDbItemById(id);
-  if (typeof idxToDeleteAt === "number") {
-    const itemToDelete = getDbItemById(id);
-    db.splice(idxToDeleteAt, 1); // .splice can delete from an array
-    return itemToDelete;
-  } else {
-    return "not found";
-  }
+    const idxToDeleteAt = findIndexOfDbItemById(id);
+    if (typeof idxToDeleteAt === "number") {
+        const itemToDelete = getDbItemById(id);
+        db.splice(idxToDeleteAt, 1); // .splice can delete from an array
+        return itemToDelete;
+    } else {
+        return "not found";
+    }
 };
 
 /**
@@ -69,13 +69,13 @@ export const deleteDbItemById = (id: number): DbItemWithId | "not found" => {
  *  otherwise the string `"not found"`
  */
 const findIndexOfDbItemById = (id: number): number | "not found" => {
-  const matchingIdx = db.findIndex((entry) => entry.id === id);
-  // .findIndex returns -1 if not located
-  if (matchingIdx !== -1) {
-    return matchingIdx;
-  } else {
-    return "not found";
-  }
+    const matchingIdx = db.findIndex((entry) => entry.id === id);
+    // .findIndex returns -1 if not located
+    if (matchingIdx !== -1) {
+        return matchingIdx;
+    } else {
+        return "not found";
+    }
 };
 
 /**
@@ -83,7 +83,7 @@ const findIndexOfDbItemById = (id: number): number | "not found" => {
  * @returns all database items from the database
  */
 export const getAllDbItems = (): DbItemWithId[] => {
-  return db;
+    return db;
 };
 
 /**
@@ -94,12 +94,12 @@ export const getAllDbItems = (): DbItemWithId[] => {
  *  otherwise the string `"not found"`
  */
 export const getDbItemById = (id: number): DbItemWithId | "not found" => {
-  const maybeEntry = db.find((entry) => entry.id === id);
-  if (maybeEntry) {
-    return maybeEntry;
-  } else {
-    return "not found";
-  }
+    const maybeEntry = db.find((entry) => entry.id === id);
+    if (maybeEntry) {
+        return maybeEntry;
+    } else {
+        return "not found";
+    }
 };
 
 /**
@@ -112,14 +112,14 @@ export const getDbItemById = (id: number): DbItemWithId | "not found" => {
  *  otherwise the string `"not found"`
  */
 export const updateDbItemById = (
-  id: number,
-  newData: Partial<DbItem>
+    id: number,
+    newData: Partial<DbItem>
 ): DbItemWithId | "not found" => {
-  const idxOfEntry = findIndexOfDbItemById(id);
-  // type guard against "not found"
-  if (typeof idxOfEntry === "number") {
-    return Object.assign(db[idxOfEntry], newData);
-  } else {
-    return "not found";
-  }
+    const idxOfEntry = findIndexOfDbItemById(id);
+    // type guard against "not found"
+    if (typeof idxOfEntry === "number") {
+        return Object.assign(db[idxOfEntry], newData);
+    } else {
+        return "not found";
+    }
 };

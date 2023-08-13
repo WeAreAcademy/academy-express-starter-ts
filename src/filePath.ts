@@ -9,7 +9,7 @@ import path from "path";
  * @returns string
  */
 const filePath = (relativePath: string): string =>
-  // using the special __dirname variable: https://www.digitalocean.com/community/tutorials/nodejs-how-to-use__dirname
-  path.join(__dirname, relativePath);
+    // using the special __dirname variable: https://www.digitalocean.com/community/tutorials/nodejs-how-to-use__dirname
+    path.join(__dirname, relativePath);
 
 export default filePath;
