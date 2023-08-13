@@ -23,6 +23,7 @@ app.use(express.json());
 app.use(cors());
 
 // read in contents of any environment variables in the .env file
+// Must be done BEFORE trying to access process.env...
 dotenv.config();
 
 // use the environment variable PORT, or 4000 as a fallback
